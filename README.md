@@ -13,7 +13,7 @@ A complete redesign and modernization of the **Excellence International School, 
 | **Email Address** | sendmail2arpansutradhar@gmail.com |
 | **GitHub Username** | arpansdhr |
 | **Selected Website** | https://excellenceinternationalschool.com/ |
-| **Live Demo** | https://dettroin-int-arpan-website-od6v.vercel.app/ |
+| **Live Demo** | https://excellenceinternationalschool.up.railway.app/ |
 
 ---
 
