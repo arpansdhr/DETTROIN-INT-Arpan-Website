@@ -113,7 +113,7 @@ export default function AcademicsSection({ onOpenAdmission }) {
               {/* Stage Image */}
               <div style={{ borderRadius: '20px', overflow: 'hidden', boxShadow: 'var(--shadow-md)' }}>
                 <img 
-                  src={activeStage.id === 'middle' ? '/images/lab.jpg' : '/images/classroom.jpg'} 
+                  src={activeStage.id === 'pre-primary' ? '/images/Pre-Primary-School.webp' : activeStage.id === 'middle' ? '/images/lab.jpg' : '/images/classroom.jpg'} 
                   alt={activeStage.title} 
                   style={{ width: '100%', height: '340px', objectFit: 'cover' }}
                 />

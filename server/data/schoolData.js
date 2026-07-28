@@ -120,7 +120,7 @@ export const facilities = [
     category: "Logistics",
     description: "Air-conditioned school buses equipped with real-time GPS tracking, speed governors, and female bus attendants.",
     icon: "Bus",
-    image: "/images/hero.jpg"
+    image: "/images/Transportation-Facility.webp"
   },
   {
     id: "library-hub",
