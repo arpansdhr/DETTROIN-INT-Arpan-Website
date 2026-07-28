@@ -89,19 +89,17 @@ export default function Navbar({ onOpenAdmission }) {
           
           {/* Logo & Brand Name */}
           <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
-            <div style={{
-              width: '46px',
-              height: '46px',
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, var(--primary-emerald), var(--primary-emerald-light))',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--accent-gold)',
-              boxShadow: '0 4px 12px rgba(15, 56, 44, 0.25)'
-            }}>
-              <GraduationCap size={28} />
-            </div>
+            <img
+              src="/images/Excellence-Logo.jpg"
+              alt="Excellence International School"
+              style={{
+                width: '46px',
+                height: '46px',
+                borderRadius: '12px',
+                objectFit: 'cover',
+                boxShadow: '0 4px 12px rgba(15, 56, 44, 0.25)'
+              }}
+            />
             <div>
               <div style={{
                 fontFamily: 'var(--font-heading)',
