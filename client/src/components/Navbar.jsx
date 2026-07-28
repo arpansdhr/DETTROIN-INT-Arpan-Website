@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Phone, Mail, MapPin, Menu, X, GraduationCap, ChevronRight, Sparkles } from 'lucide-react';
 
 export default function Navbar({ onOpenAdmission }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const drawerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +17,21 @@ export default function Navbar({ onOpenAdmission }) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!drawerRef.current) return;
+    const el = drawerRef.current;
+    if (mobileMenuOpen) {
+      const height = el.scrollHeight;
+      el.style.maxHeight = height + 'px';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    } else {
+      el.style.maxHeight = '0px';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(-8px)';
+    }
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { name: 'Home', href: '#hero' },
@@ -144,47 +160,56 @@ export default function Navbar({ onOpenAdmission }) {
               }}
               className="mobile-toggle"
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div style={{
+        {/* Mobile Navigation Drawer: always in DOM so transitions work */}
+        <div
+          ref={drawerRef}
+          className={"mobile-drawer" + (mobileMenuOpen ? ' open' : '')}
+          aria-hidden={!mobileMenuOpen}
+          style={{
+            maxHeight: 0,
+            overflow: 'hidden',
             background: 'var(--bg-white)',
             borderTop: '1px solid var(--border-light)',
-            padding: '20px',
-            boxShadow: 'var(--shadow-lg)'
-          }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  style={{
-                    fontSize: '1.05rem',
-                    fontWeight: 600,
-                    color: 'var(--primary-emerald)',
-                    padding: '8px 0',
-                    borderBottom: '1px solid #f1f5f9'
-                  }}
-                >
-                  {link.name}
-                </a>
-              ))}
-              <button 
-                className="btn-primary" 
-                onClick={() => { setMobileMenuOpen(false); onOpenAdmission(); }}
-                style={{ width: '100%', marginTop: '10px', justifyContent: 'center' }}
+            boxShadow: 'var(--shadow-lg)',
+            padding: 0,
+            opacity: 0,
+            transform: 'translateY(-8px)',
+            transition: 'max-height 320ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease, transform 320ms cubic-bezier(.2,.9,.2,1)'
+          }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '20px' }}>
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  fontSize: '1.05rem',
+                  fontWeight: 600,
+                  color: 'var(--primary-emerald)',
+                  padding: '8px 0',
+                  borderBottom: '1px solid #f1f5f9'
+                }}
               >
-                Apply for Admission 2026-2027
-              </button>
-            </div>
+                {link.name}
+              </a>
+            ))}
+            <button 
+              className="btn-primary" 
+              onClick={() => { setMobileMenuOpen(false); onOpenAdmission(); }}
+              style={{ width: '100%', marginTop: '10px', justifyContent: 'center' }}
+            >
+              Apply for Admission 2026-2027
+            </button>
           </div>
-        )}
+        </div>
       </nav>
 
       {/* Inline styling helper for mobile query */}
