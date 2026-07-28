@@ -258,7 +258,7 @@ npm run client
 
 **Website:**
 
-https://dettroin-int-arpan-website-od6v.vercel.app/
+https://excellenceinternationalschool.up.railway.app/
 
 ---
 
