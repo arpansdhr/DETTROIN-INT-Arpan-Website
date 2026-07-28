@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, ShieldCheck, Award, Users, BookOpen, CheckCircle, Sparkles, Star } from 'lucide-react';
+import { apiUrl } from '../apiClient';
 
 export default function HeroSection({ onOpenAdmission }) {
   const [quickForm, setQuickForm] = useState({
@@ -14,7 +15,7 @@ export default function HeroSection({ onOpenAdmission }) {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('/api/admissions/enquiry', {
+      const res = await fetch(apiUrl('/api/admissions/enquiry'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

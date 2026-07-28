@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calculator, CheckCircle2, ChevronRight, Sparkles, User, Phone, Mail, MapPin, X } from 'lucide-react';
+import { apiUrl } from '../apiClient';
 
 export default function AdmissionWizard({ isModal = false, onClose }) {
   const [step, setStep] = useState(1);
@@ -41,7 +42,7 @@ export default function AdmissionWizard({ isModal = false, onClose }) {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const res = await fetch('/api/admissions/enquiry', {
+      const res = await fetch(apiUrl('/api/admissions/enquiry'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

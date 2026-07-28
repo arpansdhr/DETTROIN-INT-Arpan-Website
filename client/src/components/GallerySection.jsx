@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Image as ImageIcon, Eye, X } from 'lucide-react';
+import { apiUrl } from '../apiClient';
 
 export default function GallerySection() {
   const [items, setItems] = useState([]);
@@ -7,7 +8,7 @@ export default function GallerySection() {
   const [lightboxImage, setLightboxImage] = useState(null);
 
   useEffect(() => {
-    fetch('/api/gallery')
+    fetch(apiUrl('/api/gallery'))
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setItems(data);

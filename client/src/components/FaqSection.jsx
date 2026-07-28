@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, ChevronDown, HelpCircle, Sparkles } from 'lucide-react';
+import { apiUrl } from '../apiClient';
 
 export default function FaqSection() {
   const [faqs, setFaqs] = useState([]);
@@ -7,7 +8,7 @@ export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
   useEffect(() => {
-    fetch('/api/faqs')
+    fetch(apiUrl('/api/faqs'))
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setFaqs(data);

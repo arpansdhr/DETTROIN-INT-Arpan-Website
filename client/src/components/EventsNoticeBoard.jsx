@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, Calendar, MapPin, Sparkles, ArrowRight } from 'lucide-react';
+import { apiUrl } from '../apiClient';
 
 export default function EventsNoticeBoard({ onOpenAdmission }) {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch('/api/events')
+    fetch(apiUrl('/api/events'))
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setEvents(data);

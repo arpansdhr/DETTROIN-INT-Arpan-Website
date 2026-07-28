@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Sparkles, Brain, Code, Palette, Microscope, CheckCircle2, ChevronRight, Calculator } from 'lucide-react';
+import { apiUrl } from '../apiClient';
 
 export default function AcademicsSection({ onOpenAdmission }) {
   const [stages, setStages] = useState([]);
   const [selectedStageId, setSelectedStageId] = useState('pre-primary');
 
   useEffect(() => {
-    fetch('/api/academics')
+    fetch(apiUrl('/api/academics'))
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {

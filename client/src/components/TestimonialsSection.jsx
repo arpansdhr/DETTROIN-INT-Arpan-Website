@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { apiUrl } from '../apiClient';
 
 export default function TestimonialsSection() {
   const [testimonials, setTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    fetch('/api/testimonials')
+    fetch(apiUrl('/api/testimonials'))
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setTestimonials(data);

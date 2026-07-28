@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { apiUrl } from '../apiClient';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ export default function ContactSection() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(apiUrl('/api/contact'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

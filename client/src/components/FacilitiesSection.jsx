@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ShieldCheck, Monitor, Cpu, Trophy, Bus, BookOpen, Eye, X, CheckCircle2 } from 'lucide-react';
+import { apiUrl } from '../apiClient';
 
 export default function FacilitiesSection({ onOpenAdmission }) {
   const [facilities, setFacilities] = useState([]);
   const [activeFacility, setActiveFacility] = useState(null);
 
   useEffect(() => {
-    fetch('/api/facilities')
+    fetch(apiUrl('/api/facilities'))
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setFacilities(data);
