@@ -36,7 +36,7 @@ A complete redesign and modernization of the **Excellence International School, 
 ### Development Tools
 - Git
 - GitHub
-- Vercel
+- Railway
 - npm
 
 ---
